@@ -1,9 +1,17 @@
 
 public class cilveks {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	String vards;
+	String uzvards;
+	int talrunis;
+	String majasAdrese;
+	boolean atrak;
+	
+	//konstruktors
+	public cilveks(String vards, String uzvards, int talrunis, String majasAdrese) {
+		this.vards = vards;
+		this.uzvards = uzvards;
+		this.talrunis = talrunis;
+		this.majasAdrese = majasAdrese;
 	}
-
+	
 }
