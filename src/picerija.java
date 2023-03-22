@@ -20,6 +20,18 @@ public class picerija {
 			
 			switch(izvele) {
 			case "Jauns klients":
+				//klients = new cilveks(vards, uzvards, talrunis, majasAdrese);
+				klients.setVards(JOptionPane.showInputDialog("Ievadi studenta vârdu"));
+				klients.setUzvards(JOptionPane.showInputDialog("Ievadi studenta uzvârdu"));
+				
+				String tel="";
+				do{
+					tel = JOptionPane.showInputDialog("Ievadi telefona numuru formâtâ 200000000");
+				}while(!Pattern.matches("^[2]{1}[0-9]{7}$", tel));
+				klients.setTalrunis("+371"+tel);
+				
+				
+				cilvekuMasivs.add(klients);
 			break;
 			}
 			
