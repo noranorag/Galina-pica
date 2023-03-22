@@ -30,11 +30,32 @@ public class pica {
 		public void setTomati(boolean tomati) {
 			this.tomati = tomati;
 		}
-		public void setStudProg(boolean gurki) {
+		public void setGurki(boolean gurki) {
 			this.gurki = gurki;
 		}
-		public void izmers(int izmers) {
+		public void setIzmers(int izmers) {
 			this.izmers = izmers;
 		}
+		
+		//get metodes
+		public void getVeids(String veids) {
+			this.veids=veids;
+		}
+		public void getPeperoni(boolean peperoni) {
+			this.peperoni = peperoni;
+		}
+		public void getSiers(boolean siers) {
+			this.siers = siers;
+		}
+		public void getTomati(boolean tomati) {
+			this.tomati = tomati;
+		}
+		public void getGurki(boolean gurki) {
+			this.gurki = gurki;
+		}
+		public void getIzmers(int izmers) {
+			this.izmers = izmers;
+		}
+		
 		
 }

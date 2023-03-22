@@ -24,10 +24,28 @@ public class cilveks {
 		public void setTalrunis(String talrunis) {
 			this.talrunis = talrunis;
 		}
-		public void setTalr(String majasAdrese) {
+		public void setMajasAdrese(String majasAdrese) {
 			this.majasAdrese = majasAdrese;
 		}
-		public void setStudProg(boolean atrak) {
+		public void setAtrak(boolean atrak) {
+			this.atrak = atrak;
+		}
+		
+	//get metodes
+		
+		public void getVards(String vards) {
+			this.vards=vards;
+		}
+		public void getUzvards(String uzvards) {
+			this.uzvards = uzvards;
+		}
+		public void getTalrunis(String talrunis) {
+			this.talrunis = talrunis;
+		}
+		public void getMajasAdrese(String majasAdrese) {
+			this.majasAdrese = majasAdrese;
+		}
+		public void getAtrak(boolean atrak) {
 			this.atrak = atrak;
 		}
 		
