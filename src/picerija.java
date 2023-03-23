@@ -7,35 +7,40 @@ import javax.swing.JOptionPane;
 public class picerija {
 	
 	public static void main(String[] args) {
-		String vards, uzvards, majasAdrese, izvele;
-		String[] darbibas = {"Jauns klients", "Apkalpojamo klientu saraksts", "Apskatît cilvçka pasûtîjumu", "Apkalpot pirmo klientu", "Aizvçrt programmu"};
-		int talrunis, masivaL, skaititajs, skaits=0;
+		String vards = null, uzvards = null, majasAdrese = null, izvele;
+		String[] darbibas = {"Jauns klients", "Apkalpojamo klientu saraksts", "Apskatat cilveka pasutijumu", "Apkalpot pirmo klientu", "Aizvert programmu"};
+		String talrunis = null;
+		int masivaL, skaititajs, skaits=0;
 		cilveks klients = null;
 		
 		ArrayList<cilveks> cilvekuMasivs = new ArrayList<cilveks>();
 		
 		do {
-			izvele = (String) JOptionPane.showInputDialog(null, "Izvçlies darbîbu", "Izvçle", JOptionPane.QUESTION_MESSAGE,
+			izvele = (String) JOptionPane.showInputDialog(null, "Izvï¿½lies darbï¿½bu", "Izvï¿½le", JOptionPane.QUESTION_MESSAGE,
 					null, darbibas, darbibas[0]);
 			
 			switch(izvele) {
 			case "Jauns klients":
-				//klients = new cilveks(vards, uzvards, talrunis, majasAdrese);
-				klients.setVards(JOptionPane.showInputDialog("Ievadi studenta vârdu"));
-				klients.setUzvards(JOptionPane.showInputDialog("Ievadi studenta uzvârdu"));
+				klients = new cilveks(vards, uzvards, talrunis, majasAdrese);
+				klients.setVards(JOptionPane.showInputDialog("Ievadi studenta vardu"));
+				klients.setUzvards(JOptionPane.showInputDialog("Ievadi studenta uzvardu"));
 				
 				String tel="";
 				do{
-					tel = JOptionPane.showInputDialog("Ievadi telefona numuru formâtâ 200000000");
+					tel = JOptionPane.showInputDialog("Ievadi telefona numuru formata 200000000");
 				}while(!Pattern.matches("^[2]{1}[0-9]{7}$", tel));
 				klients.setTalrunis("+371"+tel);
-				
-				
+				klients.setMajasAdrese(JOptionPane.showInputDialog("Ievadi klienta majas adresi"));
+				JOptionPane.showMessageDialog(null, "Klients izveidots!");
 				cilvekuMasivs.add(klients);
+			break;
+			
+			case "Aizvert programmu":
+				JOptionPane.showMessageDialog(null, "Programma tiek aizvÄ“rta!");
 			break;
 			}
 			
-		}while(!izvele.equals("Aizvçrt programmu"));
+		}while(!izvele.equals("Aizvert programmu"));
 				
 		
 		 
