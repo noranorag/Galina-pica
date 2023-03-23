@@ -4,14 +4,15 @@ public class cilveks {
 	String uzvards;
 	String talrunis;
 	String majasAdrese;
-	boolean atrak;
+	String veids;
 	
 	//konstruktors
-	public cilveks(String vards, String uzvards, String talrunis, String majasAdrese) {
+	public cilveks(String vards, String uzvards, String talrunis, String majasAdrese, String veids) {
 		this.vards = vards;
 		this.uzvards = uzvards;
 		this.talrunis = talrunis;
 		this.majasAdrese = majasAdrese;
+		this.veids = veids;
 	}
 	
 	//set metodes
@@ -27,8 +28,8 @@ public class cilveks {
 		public void setMajasAdrese(String majasAdrese) {
 			this.majasAdrese = majasAdrese;
 		}
-		public void setAtrak(boolean atrak) {
-			this.atrak = atrak;
+		public void setVeids(String veids) {
+			this.veids = veids;
 		}
 		
 	//get metodes
@@ -45,8 +46,8 @@ public class cilveks {
 		public void getMajasAdrese(String majasAdrese) {
 			this.majasAdrese = majasAdrese;
 		}
-		public void getAtrak(boolean atrak) {
-			this.atrak = atrak;
+		public void getVeids(String veids) {
+			this.veids = veids;
 		}
 		
 }

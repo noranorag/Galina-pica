@@ -5,10 +5,10 @@ public class pica {
 	boolean siers;
 	boolean tomati;
 	boolean gurki;
-	int izmers; 
+	String izmers; 
 	
 	//konstruktors
-	public pica(String veids, boolean peperoni, boolean siers, boolean tomati, boolean gurki, int izmers) {
+	public pica(String veids, boolean peperoni, boolean siers, boolean tomati, boolean gurki, String izmers) {
 		this.veids = veids;
 		this.peperoni = peperoni;
 		this.siers = siers;
@@ -33,7 +33,7 @@ public class pica {
 		public void setGurki(boolean gurki) {
 			this.gurki = gurki;
 		}
-		public void setIzmers(int izmers) {
+		public void setIzmers(String izmers) {
 			this.izmers = izmers;
 		}
 		
@@ -53,7 +53,7 @@ public class pica {
 		public void getGurki(boolean gurki) {
 			this.gurki = gurki;
 		}
-		public void getIzmers(int izmers) {
+		public void getIzmers(String izmers) {
 			this.izmers = izmers;
 		}
 		
