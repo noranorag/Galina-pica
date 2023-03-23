@@ -38,23 +38,28 @@ public class pica {
 		}
 		
 		//get metodes
-		public void getVeids(String veids) {
-			this.veids=veids;
+		public String getVeids() {
+			return veids;
 		}
-		public void getPeperoni(boolean peperoni) {
-			this.peperoni = peperoni;
+		public boolean getPeperoni() {
+			return peperoni;
 		}
-		public void getSiers(boolean siers) {
-			this.siers = siers;
+		public boolean getSiers() {
+			return siers;
 		}
-		public void getTomati(boolean tomati) {
-			this.tomati = tomati;
+		public boolean getTomati() {
+			return tomati;
 		}
-		public void getGurki(boolean gurki) {
-			this.gurki = gurki;
+		public boolean getGurki() {
+			return gurki;
 		}
-		public void getIzmers(String izmers) {
-			this.izmers = izmers;
+		public String getIzmers() {
+			return izmers;
+		}
+		
+		public String izvadit() {
+			return "Veids: "+getVeids()+"\nExtra Peperoni: "+getPeperoni()+"\nExtra Siers: "+getSiers()+"\nExtra tomati: "+getTomati()+"\nExtra Gurki: "+getGurki()+"\nIzmērs"+getIzmers();
+			
 		}
 		
 		

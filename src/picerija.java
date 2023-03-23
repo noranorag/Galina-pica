@@ -8,15 +8,15 @@ import javax.swing.JOptionPane;
 public class picerija {
 	
 	public static void main(String[] args) {
-		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, veids = null, izmers = null;
-		String[] darbibas = {"Jauns klients", "Apkalpojamo klientu saraksts", "Apskatat cilveka pasutijumu", "Apkalpot pirmo klientu", "Aizvert programmu"};
+		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, veids = null, izmers = null;
+		String[] darbibas = {"Jauns klients", "Apskatīt klientus", "Apskatat klientu pasutijumus", "Apkalpot pirmo klientu", "Uztaisīt picu", "Aizvert programmu"};
 		String[] picuVeidi = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē"};
 		String[] izmeriP = {"30 cm diametra", "50 cm diametra", "80 cm diametra"};
 		String talrunis = null;
-		int masivaL, skaititajs, skaits=0, kadsKlients;
+		int kadsKlients;
 		cilveks klients = null;
 		pica jaunaPica = null;
-		boolean peperoni = false, siers = false, tomati = false, gurki = false;
+		boolean peperoni = false, siers = false, tomati = false, gurki = false, picina = false;
 		
 		
 		ArrayList<cilveks> cilvekuMasivs = new ArrayList<cilveks>();
@@ -30,6 +30,7 @@ public class picerija {
 			
 			switch(izvele) {
 			case "Jauns klients":
+				if(cilvekuMasivs.size() <= 5) {
 				klients = new cilveks(vards, uzvards, talrunis, majasAdrese, veids);
 				jaunaPica = new pica(veids, peperoni, siers, tomati, gurki, izmers);
 				
@@ -140,17 +141,38 @@ public class picerija {
 
 				picuMasivs.add(jaunaPica);
 				JOptionPane.showMessageDialog(null, "Pica saglabāta!");
-				JOptionPane.showMessageDialog(null, "Tā drīz būs gatava!");
+				
+				klients.setVards(JOptionPane.showInputDialog("Ievadi klienta vardu"));
+				klients.setUzvards(JOptionPane.showInputDialog("Ievadi klienta uzvardu"));
+				JOptionPane.showMessageDialog(null, "Klients saglabāts!");
+				
+				JOptionPane.showMessageDialog(null, "Pica drīz būs gatava!");
 				}
+				}else
+					JOptionPane.showMessageDialog(null, "Tu nevari pieņemt vairāk par 5 cilvēkiem vienlaicīgi");
 				
 				
 			break;
 			
 			case "Apkalpojamo klientu saraksts":
+
+				int kk=1;
+				for(int i=0; i<picuMasivs.size(); i++) {
+					JOptionPane.showMessageDialog(null, kk+". klients\n"+((pica)picuMasivs.get(i)).izvadit());
+					kk++;
+				}
+			break;
+			
+			
 				
 			
 			case "Aizvert programmu":
 				JOptionPane.showMessageDialog(null, "Programma tiek aizvērta!");
+			break;
+			
+			case "Uztaisīt picu":
+				
+				
 			break;
 			}
 			
@@ -160,5 +182,6 @@ public class picerija {
 		 
 
 	}
+
 
 }
