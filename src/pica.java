@@ -67,7 +67,7 @@ public class pica {
 		}
 		
 		public String izvadit() {
-			return "Veids: "+getVeids()+"\nExtra Peperoni: "+getPeperoni()+"\nExtra Siers: "+getSiers()+"\nExtra tomati: "+getTomati()+"\nExtra Gurki: "+getGurki()+"\nIzmērs"+getIzmers();
+			return "Veids: "+getVeids()+"\nExtra Peperoni: "+getPeperoni()+"\nExtra Siers: "+getSiers()+"\nExtra tomati: "+getTomati()+"\nExtra Gurki: "+getGurki()+"\nIzmērs"+getIzmers()+"\nSavaksana: "+getLidznemsana();
 			
 		}
 		

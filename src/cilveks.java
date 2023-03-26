@@ -34,20 +34,23 @@ public class cilveks {
 		
 	//get metodes
 		
-		public void getVards(String vards) {
-			this.vards=vards;
+		public String getVards() {
+			return vards;
 		}
-		public void getUzvards(String uzvards) {
-			this.uzvards = uzvards;
+		public String getUzvards() {
+			return uzvards;
 		}
-		public void getTalrunis(String talrunis) {
-			this.talrunis = talrunis;
+		public String getTalrunis() {
+			return talrunis;
 		}
-		public void getMajasAdrese(String majasAdrese) {
-			this.majasAdrese = majasAdrese;
+		public String getMajasAdrese() {
+			return majasAdrese;
 		}
-		public void getVeids(String veids) {
-			this.veids = veids;
+		public String getVeids() {
+			return veids;
 		}
 		
+		public String izvaditC() {
+			return "Vards: "+getVards()+"\nUzvards: "+getUzvards()+"\nTalrunis: "+getTalrunis()+"\nMajasAdrese: "+getMajasAdrese()+"\nVeids: "+getVeids()
+;
 }

@@ -9,7 +9,7 @@ public class picerija {
 	
 	public static void main(String[] args) {
 		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, izvele4, veids = null, izmers = null;
-		String[] darbibas = {"Jauns klients", "Apskatīt klientus", "Apskatat klientu pasutijumus", "Apkalpot pirmo klientu", "Uztaisīt picu", "Edienkarte","Aizvert programmu"};
+		String[] darbibas = {"Jauns klients", "Apskatīt klientus", "Apskatit klientu pasutijumus", "Apkalpot pirmo klientu", "Uztaisīt picu", "Edienkarte", "", "Aizvert programmu"};
 		String[] picuVeidi = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē"};
 		String[] lidznemsanas = {"Uz vietas", "Piegade uz majam"};
 		String[] izmeriP = {"30 cm diametra", "50 cm diametra", "80 cm diametra"};
@@ -172,7 +172,7 @@ public class picerija {
 				
 			break;
 			
-			case "Apskatat klientu pasutijumus":
+			case "Apskatit klientu pasutijumus":
 
 				int kk=1;
 				for(int i=0; i<picuMasivs.size(); i++) {
@@ -181,7 +181,10 @@ public class picerija {
 				}
 			break;
 			
-			
+			case "Uztaisīt picu":
+					JOptionPane.showMessageDialog(null, ((pica)picuMasivs.get(0)).izvadit());
+				
+			break;
 				
 			
 			case "Aizvert programmu":
@@ -209,7 +212,6 @@ public class picerija {
 					JOptionPane.showMessageDialog(null, "Oregano, tomati, olivas, siers, olivu ella, senes");
 				break;
 				}
-				
 				
 			break;
 			}
