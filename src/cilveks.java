@@ -51,6 +51,6 @@ public class cilveks {
 		}
 		
 		public String izvaditC() {
-			return "Vards: "+getVards()+"\nUzvards: "+getUzvards()+"\nTalrunis: "+getTalrunis()+"\nMajasAdrese: "+getMajasAdrese()+"\nVeids: "+getVeids()
-;
+			return "Vards: "+getVards()+"\nUzvards: "+getUzvards()+"\nTalrunis: "+getTalrunis()+"\nMajasAdrese: "+getMajasAdrese()+"\nVeids: "+getVeids();
+}
 }
