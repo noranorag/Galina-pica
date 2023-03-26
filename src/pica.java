@@ -5,10 +5,11 @@ public class pica {
 	boolean siers;
 	boolean tomati;
 	boolean gurki;
-	String izmers; 
+	String izmers;
+	boolean lidznemsana;
 	
 	//konstruktors
-	public pica(String veids, boolean peperoni, boolean siers, boolean tomati, boolean gurki, String izmers) {
+	public pica(String veids, boolean peperoni, boolean siers, boolean tomati, boolean gurki, String izmers, boolean lidznemsana) {
 		this.veids = veids;
 		this.peperoni = peperoni;
 		this.siers = siers;
@@ -37,6 +38,10 @@ public class pica {
 			this.izmers = izmers;
 		}
 		
+		public void setLidznemsana(boolean lidznemsana) {
+			this.lidznemsana = lidznemsana;
+		}
+		
 		//get metodes
 		public String getVeids() {
 			return veids;
@@ -55,6 +60,10 @@ public class pica {
 		}
 		public String getIzmers() {
 			return izmers;
+		}
+		
+		public boolean getLidznemsana() {
+			return lidznemsana;
 		}
 		
 		public String izvadit() {

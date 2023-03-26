@@ -11,12 +11,13 @@ public class picerija {
 		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, veids = null, izmers = null;
 		String[] darbibas = {"Jauns klients", "Apskatīt klientus", "Apskatat klientu pasutijumus", "Apkalpot pirmo klientu", "Uztaisīt picu", "Aizvert programmu"};
 		String[] picuVeidi = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē"};
+		String[] lidznemsanas = {"Uz vietas", "Piegade uz majam"};
 		String[] izmeriP = {"30 cm diametra", "50 cm diametra", "80 cm diametra"};
 		String talrunis = null;
 		int kadsKlients;
 		cilveks klients = null;
 		pica jaunaPica = null;
-		boolean peperoni = false, siers = false, tomati = false, gurki = false, picina = false;
+		boolean peperoni = false, siers = false, tomati = false, gurki = false, lidznemsana = false;
 		
 		
 		ArrayList<cilveks> cilvekuMasivs = new ArrayList<cilveks>();
@@ -32,7 +33,7 @@ public class picerija {
 			case "Jauns klients":
 				if(cilvekuMasivs.size() <= 5) {
 				klients = new cilveks(vards, uzvards, talrunis, majasAdrese, veids);
-				jaunaPica = new pica(veids, peperoni, siers, tomati, gurki, izmers);
+				jaunaPica = new pica(veids, peperoni, siers, tomati, gurki, izmers, lidznemsana);
 				
 				kadsKlients = rand.nextInt(2)+1;
 				if(kadsKlients==1) {
@@ -78,23 +79,39 @@ public class picerija {
 					break;
 					
 					}
-
-					picuMasivs.add(jaunaPica);
-					JOptionPane.showMessageDialog(null, "Pica saglabāta!");
-					JOptionPane.showMessageDialog(null, "Nepieciešams ierakstīt klienta info!");
+					izvele3 = (String) JOptionPane.showInputDialog(null, "Izvelies darbibu", "Izvele", JOptionPane.QUESTION_MESSAGE,
+							null, lidznemsanas, lidznemsanas[0]);
 					
+					switch(izvele3) {
+					case "Uz vietas":
+						klients.setVards(JOptionPane.showInputDialog("Ievadi klienta vardu"));
+						klients.setUzvards(JOptionPane.showInputDialog("Ievadi klienta uzvardu"));
+						JOptionPane.showMessageDialog(null, "Klients saglabāts!");
+						cilvekuMasivs.add(klients);
+						JOptionPane.showMessageDialog(null, "Pica drīz būs gatava!");
+						jaunaPica.setLidznemsana(false);
+					break;
+					case "Piegade uz majam":
+						JOptionPane.showMessageDialog(null, "Nepieciešams ierakstīt klienta info!");
+						
+						
+						klients.setVards(JOptionPane.showInputDialog("Ievadi klienta vardu"));
+						klients.setUzvards(JOptionPane.showInputDialog("Ievadi klienta uzvardu"));
+						
+						String tel="";
+						do{
+							tel = JOptionPane.showInputDialog("Ievadi telefona numuru formata 200000000");
+						}while(!Pattern.matches("^[2]{1}[0-9]{7}$", tel));
+						klients.setTalrunis("+371"+tel);
+						klients.setMajasAdrese(JOptionPane.showInputDialog("Ievadi klienta majas adresi"));
+						JOptionPane.showMessageDialog(null, "Klienta info pierakstīts! Pica drīz būs gatava!");
+						cilvekuMasivs.add(klients);
+						jaunaPica.setLidznemsana(true);
+					break;
+					}
 					
-					klients.setVards(JOptionPane.showInputDialog("Ievadi klienta vardu"));
-					klients.setUzvards(JOptionPane.showInputDialog("Ievadi klienta uzvardu"));
+			
 					
-					String tel="";
-					do{
-						tel = JOptionPane.showInputDialog("Ievadi telefona numuru formata 200000000");
-					}while(!Pattern.matches("^[2]{1}[0-9]{7}$", tel));
-					klients.setTalrunis("+371"+tel);
-					klients.setMajasAdrese(JOptionPane.showInputDialog("Ievadi klienta majas adresi"));
-					JOptionPane.showMessageDialog(null, "Klienta info pierakstīts! Pica drīz būs gatava!");
-					cilvekuMasivs.add(klients);
 				} else {
 					JOptionPane.showMessageDialog(null, "Klients veic pasūtijumu klātienē!"); //klatiene
 				
@@ -145,6 +162,7 @@ public class picerija {
 				klients.setVards(JOptionPane.showInputDialog("Ievadi klienta vardu"));
 				klients.setUzvards(JOptionPane.showInputDialog("Ievadi klienta uzvardu"));
 				JOptionPane.showMessageDialog(null, "Klients saglabāts!");
+				cilvekuMasivs.add(klients);
 				
 				JOptionPane.showMessageDialog(null, "Pica drīz būs gatava!");
 				}
@@ -154,7 +172,7 @@ public class picerija {
 				
 			break;
 			
-			case "Apkalpojamo klientu saraksts":
+			case "Apskatat klientu pasutijumus":
 
 				int kk=1;
 				for(int i=0; i<picuMasivs.size(); i++) {
