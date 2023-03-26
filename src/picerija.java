@@ -8,8 +8,8 @@ import javax.swing.JOptionPane;
 public class picerija {
 	
 	public static void main(String[] args) {
-		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, veids = null, izmers = null;
-		String[] darbibas = {"Jauns klients", "Apskatīt klientus", "Apskatat klientu pasutijumus", "Apkalpot pirmo klientu", "Uztaisīt picu", "Aizvert programmu"};
+		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, izvele4, veids = null, izmers = null;
+		String[] darbibas = {"Jauns klients", "Apskatīt klientus", "Apskatat klientu pasutijumus", "Apkalpot pirmo klientu", "Uztaisīt picu", "Edienkarte","Aizvert programmu"};
 		String[] picuVeidi = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē"};
 		String[] lidznemsanas = {"Uz vietas", "Piegade uz majam"};
 		String[] izmeriP = {"30 cm diametra", "50 cm diametra", "80 cm diametra"};
@@ -188,7 +188,27 @@ public class picerija {
 				JOptionPane.showMessageDialog(null, "Programma tiek aizvērta!");
 			break;
 			
-			case "Uztaisīt picu":
+			case "Edienkarte":
+				izvele4 = (String) JOptionPane.showInputDialog(null, "Izvelies kuras picas sastavdalas apskatit", "Izvele", JOptionPane.QUESTION_MESSAGE,
+						null, picuVeidi, picuVeidi[0]);
+				
+				switch(izvele4) {
+				case "Olīvu pica":
+					JOptionPane.showMessageDialog(null, "Olivas, tomati, baziliks, paprika, siers, tomatu merce");
+				break;
+				case "Siera pica":
+					JOptionPane.showMessageDialog(null, "Siers, tomatu merce, baziliks, melnie pipari");
+				break;
+				case "Studentu pica":
+					JOptionPane.showMessageDialog(null, "Peperoni, siers, tomatu merce, sipoli, kiploks");
+				break;
+				case "Peperoni pica":
+					JOptionPane.showMessageDialog(null, "Siers, tomatu merce, peperoni, baziliks, melnie pipari");
+				break;
+				case "Pica itāļu gaumē":
+					JOptionPane.showMessageDialog(null, "Oregano, tomati, olivas, siers, olivu ella, senes");
+				break;
+				}
 				
 				
 			break;
