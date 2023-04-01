@@ -1,16 +1,19 @@
-import java.util.Random;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
 import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 
 import javax.swing.JOptionPane;
 
 
 public class picerija {
-	
+
 	public static void main(String[] args) {
 		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, izvele4, veids = null, izmers = null;
-		String[] darbibas = {"Jauns klients", "Apskatīt klientus", "Apskatit klientu pasutijumus", "Apkalpot pirmo klientu", "Uztaisīt picu", "Edienkarte", "", "Aizvert programmu"};
+		String[] darbibas = {"Jauns klients", "Apskatīt klientus", "Apskatit klientu pasutijumus", "Apkalpot pirmo klientu", "Uztaisīt picu", "Edienkarte", "Aizvert programmu"};
 		String[] picuVeidi = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē"};
+		String[] picuVeidi2 = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē", "Atpakaļ"};
 		String[] lidznemsanas = {"Uz vietas", "Piegade uz majam"};
 		String[] izmeriP = {"30 cm diametra", "50 cm diametra", "80 cm diametra"};
 		String talrunis = null;
@@ -23,6 +26,8 @@ public class picerija {
 		ArrayList<cilveks> cilvekuMasivs = new ArrayList<cilveks>();
 		ArrayList<pica> picuMasivs = new ArrayList<pica>();
 		
+		ImageIcon bilde = new ImageIcon("loggo.png");
+		JOptionPane.showMessageDialog(null, "Spied 'ok' \n lai sāktu", "Noras picērija", JOptionPane.INFORMATION_MESSAGE, bilde);
 		Random rand = new Random();
 		
 		do {
@@ -89,6 +94,7 @@ public class picerija {
 						JOptionPane.showMessageDialog(null, "Klients saglabāts!");
 						cilvekuMasivs.add(klients);
 						JOptionPane.showMessageDialog(null, "Pica drīz būs gatava!");
+						picuMasivs.add(jaunaPica);
 						jaunaPica.setLidznemsana(false);
 					break;
 					case "Piegade uz majam":
@@ -106,6 +112,7 @@ public class picerija {
 						klients.setMajasAdrese(JOptionPane.showInputDialog("Ievadi klienta majas adresi"));
 						JOptionPane.showMessageDialog(null, "Klienta info pierakstīts! Pica drīz būs gatava!");
 						cilvekuMasivs.add(klients);
+						picuMasivs.add(jaunaPica);
 						jaunaPica.setLidznemsana(true);
 					break;
 					}
@@ -173,12 +180,14 @@ public class picerija {
 			break;
 			
 			case "Apskatit klientu pasutijumus":
-
-				int kk=1;
-				for(int i=0; i<picuMasivs.size(); i++) {
-					JOptionPane.showMessageDialog(null, kk+". klients\n"+((pica)picuMasivs.get(i)).izvadit());
-					kk++;
+				Iterator<pica> apskatit = picuMasivs.iterator();
+				String rezultats = "Picu masivs: "+picuMasivs.size()+"\n______________________\n";
+				while(apskatit.hasNext()){
+					rezultats += apskatit.next().izvadit()+"\n______________________\n";
+					
 				}
+				JOptionPane.showMessageDialog(null, rezultats, "Picas", JOptionPane.INFORMATION_MESSAGE);
+
 			break;
 			
 			case "Uztaisīt picu":
@@ -192,34 +201,49 @@ public class picerija {
 			break;
 			
 			case "Edienkarte":
+				do {
 				izvele4 = (String) JOptionPane.showInputDialog(null, "Izvelies kuras picas sastavdalas apskatit", "Izvele", JOptionPane.QUESTION_MESSAGE,
-						null, picuVeidi, picuVeidi[0]);
+						null, picuVeidi2, picuVeidi2[0]);
 				
 				switch(izvele4) {
 				case "Olīvu pica":
-					JOptionPane.showMessageDialog(null, "Olivas, tomati, baziliks, paprika, siers, tomatu merce");
+					ImageIcon bilde2 = new ImageIcon("olivu pica.png");
+					JOptionPane.showMessageDialog(null, "Sastāvdaļas:\nOlīvas\nTomāti\nŠampinjoni\nPaprika\nSiers\nTomātu mērce"
+							+ "\n______\nCena:\n30cm - 6.99\n50cm - 9.99\n80cm - 12.99 ", "Olīvu pica", JOptionPane.INFORMATION_MESSAGE, bilde2);
 				break;
 				case "Siera pica":
-					JOptionPane.showMessageDialog(null, "Siers, tomatu merce, baziliks, melnie pipari");
+					ImageIcon bilde3 = new ImageIcon("siera pica.png");
+					JOptionPane.showMessageDialog(null, "Sastāvdaļas:\nSiers\nTomātu mērce\nbaziliks\nķiploks"
+							+ "\n______\nCena:\n30cm - 5.99\n50cm - 8.99\n80cm - 11.99 ", "Siera pica", JOptionPane.INFORMATION_MESSAGE, bilde3);
 				break;
 				case "Studentu pica":
-					JOptionPane.showMessageDialog(null, "Peperoni, siers, tomatu merce, sipoli, kiploks");
+					ImageIcon bilde4 = new ImageIcon("studentu pica.png");
+					JOptionPane.showMessageDialog(null, "Sastāvdaļas:\nSiers\nTomātu mērce\nPaprika\nSīpoli\nOlīvas"
+							+ "\n______\nCena:\n30cm - 4.99\n50cm - 7.99\n80cm - 11.99 ", "Siera pica", JOptionPane.INFORMATION_MESSAGE, bilde4);
 				break;
 				case "Peperoni pica":
-					JOptionPane.showMessageDialog(null, "Siers, tomatu merce, peperoni, baziliks, melnie pipari");
+					ImageIcon bilde5 = new ImageIcon("peperoni pica.png");
+					JOptionPane.showMessageDialog(null, "Sastāvdaļas:\nSiers\nTomātu mērce\nPeperoni\nĶiploki"
+							+ "\n______\nCena:\n30cm - 5.99\n50cm - 8.99\n80cm - 11.99 ", "Peperoni pica", JOptionPane.INFORMATION_MESSAGE, bilde5);
 				break;
 				case "Pica itāļu gaumē":
-					JOptionPane.showMessageDialog(null, "Oregano, tomati, olivas, siers, olivu ella, senes");
+					ImageIcon bilde6 = new ImageIcon("italu pica.png");
+					JOptionPane.showMessageDialog(null, "Sastāvdaļas:\nSiers\nTomātu mērce\nTomāti\nĶiploki\nOregano\nLapas"
+							+ "\n______\nCena:\n30cm - 5.99\n50cm - 8.99\n80cm - 11.99 ", "Peperoni pica", JOptionPane.INFORMATION_MESSAGE, bilde6);
+				break;
+				case "Atpakaļ":
+					
 				break;
 				}
+				}while(!izvele4.equals("Atpakaļ"));
 				
 			break;
+				
 			}
-			
 		}while(!izvele.equals("Aizvert programmu"));
 				
 		
-		 
+		
 
 	}
 
