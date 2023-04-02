@@ -18,11 +18,12 @@ public class picerija {
 		String[] lidznemsanas = {"Uz vietas", "Piegade uz majam"};
 		String[] izmeriP = {"30 cm diametra", "50 cm diametra", "80 cm diametra"};
 		String talrunis = null;
-		int kadsKlients, dienas = 1;
+		int kadsKlients, dienas = 1, pabeigtasPicas=0;
 		double naudasMaks=0;
 		cilveks klients = null;
 		pica jaunaPica = null;
 		boolean peperoni = false, siers = false, tomati = false, gurki = false, lidznemsana = false;
+		String veids1;
 		
 		
 		ArrayList<cilveks> cilvekuMasivs = new ArrayList<cilveks>();
@@ -70,6 +71,7 @@ public class picerija {
 					break;
 					}
 					
+					
 					jaunaPica.setPeperoni(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra peperoni? (true/false)")));
 					jaunaPica.setSiers(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra siers? (true/false)")));
 					jaunaPica.setTomati(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra tomati? (true/false)")));
@@ -100,7 +102,6 @@ public class picerija {
 						klients.setMajasAdrese(" - ");
 						JOptionPane.showMessageDialog(null, "Klients saglabāts!");
 						cilvekuMasivs.add(klients);
-						JOptionPane.showMessageDialog(null, "Pica drīz būs gatava!");
 						picuMasivs.add(jaunaPica);
 						jaunaPica.setLidznemsana(false);
 					break;
@@ -265,16 +266,30 @@ public class picerija {
 					
 					}
 					
-					picuMasivs2.add(jaunaPica);
-					JOptionPane.showMessageDialog(null, "Tiek pārbaudīta pica");
+					izvele3 = (String) JOptionPane.showInputDialog(null, "Izvelies darbibu", "Izvele", JOptionPane.QUESTION_MESSAGE,
+							null, lidznemsanas, lidznemsanas[0]);
 					
-					if(picuMasivs.get(0).getVeids() != picuMasivs2.get(0).getVeids() || picuMasivs.get(0).getPeperoni() != picuMasivs2.get(0).getPeperoni() ||
-							picuMasivs.get(0).getSiers() != picuMasivs2.get(0).getSiers() || picuMasivs.get(0).getTomati() != picuMasivs2.get(0).getTomati() ||
-							picuMasivs.get(0).getGurki() != picuMasivs2.get(0).getGurki() || picuMasivs.get(0).getIzmers() != picuMasivs2.get(0).getIzmers()) {
+					switch(izvele3) {
+					case "Uz vietas":
+						picuMasivs2.add(jaunaPica);
+						jaunaPica.setLidznemsana(false);
+					break;
+					case "Piegade uz majam":
+						picuMasivs2.add(jaunaPica);
+						jaunaPica.setLidznemsana(true);
+					break;
+					}
+					
+					JOptionPane.showMessageDialog(null, "Tiek pārbaudīta pica");
+					JOptionPane.showMessageDialog(null, picuMasivs.get(0).getVeids());
+					JOptionPane.showMessageDialog(null, picuMasivs2.get(0).getVeids());
+					
+					if(picuMasivs.get(0).getVeids() == picuMasivs2.get(0).getVeids()) {
 						JOptionPane.showMessageDialog(null, "Tev pica izdevas!");
 					} else {
 					    JOptionPane.showMessageDialog(null, "Tev pica neizdevas!");
 					}	
+					
 					
 					
 			break;

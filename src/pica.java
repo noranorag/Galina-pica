@@ -68,8 +68,52 @@ public class pica {
 		
 		public String izvadit() {
 			return "Veids: "+getVeids()+"\nExtra Peperoni: "+getPeperoni()+"\nExtra Siers: "+getSiers()+"\nExtra tomati: "+getTomati()+"\nExtra Gurki: "+getGurki()+"\nIzmērs"+getIzmers()+"\nSutisana uz majam: "+getLidznemsana();
-			
 		}
-		
-		
+
+			 @Override
+			 public boolean equals(Object obj) {
+			     if (this == obj)
+			         return true;
+			     if (obj == null || !(obj instanceof pica))
+			         return false;
+
+			     pica other = (pica) obj;
+			     
+			     if (siers != other.siers)
+			         return false;
+			     else if (siers == other.siers)
+			         return true;
+			     if (veids != other.veids)
+			         return false;
+			     else if (veids == other.veids)
+			         return true;
+			     if (peperoni != other.peperoni)
+			         return false;
+			     else if (peperoni == other.peperoni)
+			         return true;
+			     if (tomati != other.tomati)
+			         return false;
+			     else if (tomati == other.tomati)
+			         return true;
+			     if (gurki != other.gurki)
+			         return false;
+			     else if (gurki == other.gurki)
+			         return true;
+			     if (izmers != other.izmers)
+			         return false;
+			     else if (izmers == other.izmers)
+			         return true;
+			     if (lidznemsana != other.lidznemsana)
+			         return false;
+			     else if (lidznemsana != other.lidznemsana)
+			         return true;
+			     
+			     return true;
+			 }
+
+			
 }
+		
+
+
+
