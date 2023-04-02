@@ -10,9 +10,10 @@ import javax.swing.JOptionPane;
 public class picerija {
 
 	public static void main(String[] args) {
-		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, izvele4, veids = null, izmers = null;
-		String[] darbibas = {"Jauns klients", "Apskatīt klientus", "Apskatit klientu pasutijumus", "Apkalpot pirmo klientu", "Uztaisīt picu", "Edienkarte", "Aizvert programmu"};
+		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, izvele4, izvele5, veids = null, izmers = null;
+		String[] darbibas = {"Jauns klients", "Apskatit klientu pasutijumus", "Apkalpot pirmo klientu", "Edienkarte", "Instrukcijas", "Aizvert programmu"};
 		String[] picuVeidi = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē"};
+		String[] klientaIz = {"Pasutijumi", "Klienti"};
 		String[] picuVeidi2 = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē", "Atpakaļ"};
 		String[] lidznemsanas = {"Uz vietas", "Piegade uz majam"};
 		String[] izmeriP = {"30 cm diametra", "50 cm diametra", "80 cm diametra"};
@@ -91,6 +92,8 @@ public class picerija {
 					case "Uz vietas":
 						klients.setVards(JOptionPane.showInputDialog("Ievadi klienta vardu"));
 						klients.setUzvards(JOptionPane.showInputDialog("Ievadi klienta uzvardu"));
+						klients.setTalrunis(" - ");
+						klients.setMajasAdrese(" - ");
 						JOptionPane.showMessageDialog(null, "Klients saglabāts!");
 						cilvekuMasivs.add(klients);
 						JOptionPane.showMessageDialog(null, "Pica drīz būs gatava!");
@@ -180,18 +183,43 @@ public class picerija {
 			break;
 			
 			case "Apskatit klientu pasutijumus":
-				Iterator<pica> apskatit = picuMasivs.iterator();
-				String rezultats = "Picu masivs: "+picuMasivs.size()+"\n______________________\n";
-				while(apskatit.hasNext()){
-					rezultats += apskatit.next().izvadit()+"\n______________________\n";
+				izvele5 = (String) JOptionPane.showInputDialog(null, "Izvelies kadu info apskatit", "Izvele", JOptionPane.QUESTION_MESSAGE,
+						null, klientaIz, klientaIz[0]);
+				
+				switch(izvele5) {
+				case "Pasutijumi":
+					int pasutijums = 1;
+					Iterator<pica> apskatit = picuMasivs.iterator();
+					String rezultats = "Pasūtijumu skaits: "+picuMasivs.size()+"\n_________________\n";
 					
+					while(apskatit.hasNext()){
+						rezultats += pasutijums+". pasutijums"+"\n_________________\n";
+						rezultats += apskatit.next().izvadit()+"\n_________________\n";
+						pasutijums++;
+					}
+					JOptionPane.showMessageDialog(null, rezultats, "Picas", JOptionPane.INFORMATION_MESSAGE);
+					
+				break;
+				case "Klienti":
+					int pasutijums2 = 1;
+					Iterator<cilveks> apskatit2 = cilvekuMasivs.iterator();
+					String rezultats2 = "Klientu skaits: "+cilvekuMasivs.size()+"\n_________________\n";
+					while(apskatit2.hasNext()){
+						rezultats2 += pasutijums2+". klients"+"\n_________________\n";
+						rezultats2 += apskatit2.next().izvaditC()+"\n_________________\n";
+						pasutijums2++;
+					}
+					JOptionPane.showMessageDialog(null, rezultats2, "Klienti", JOptionPane.INFORMATION_MESSAGE);
+					
+				break;
+				
 				}
-				JOptionPane.showMessageDialog(null, rezultats, "Picas", JOptionPane.INFORMATION_MESSAGE);
-
 			break;
 			
-			case "Uztaisīt picu":
+			case "Apkalpot pirmo klientu":
 					JOptionPane.showMessageDialog(null, ((pica)picuMasivs.get(0)).izvadit());
+					
+					
 				
 			break;
 				
