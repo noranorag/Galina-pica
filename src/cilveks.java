@@ -7,12 +7,11 @@ public class cilveks {
 	String veids;
 	
 	//konstruktors
-	public cilveks(String vards, String uzvards, String talrunis, String majasAdrese, String veids) {
+	public cilveks(String vards, String uzvards, String talrunis, String majasAdrese) {
 		this.vards = vards;
 		this.uzvards = uzvards;
 		this.talrunis = talrunis;
 		this.majasAdrese = majasAdrese;
-		this.veids = veids;
 	}
 	
 	//set metodes
@@ -28,9 +27,7 @@ public class cilveks {
 		public void setMajasAdrese(String majasAdrese) {
 			this.majasAdrese = majasAdrese;
 		}
-		public void setVeids(String veids) {
-			this.veids = veids;
-		}
+		
 		
 	//get metodes
 		
@@ -46,12 +43,10 @@ public class cilveks {
 		public String getMajasAdrese() {
 			return majasAdrese;
 		}
-		public String getVeids() {
-			return veids;
-		}
+		
 		
 		public String izvaditC() {
-			return "Vards: "+getVards()+"\nUzvards: "+getUzvards()+"\nTalrunis: "+getTalrunis()+"\nMajasAdrese: "+getMajasAdrese()+"\nVeids: "+getVeids();
+			return "Vards: "+getVards()+"\nUzvards: "+getUzvards()+"\nTalrunis: "+getTalrunis()+"\nMajasAdrese: "+getMajasAdrese();
 }
 		
 		public String vardins() {

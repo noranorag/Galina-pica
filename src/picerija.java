@@ -11,14 +11,15 @@ public class picerija {
 
 	public static void main(String[] args) {
 		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, izvele4, izvele5, veids = null, izmers = null;
-		String[] darbibas = {"Jauns klients", "Apskatit klientu pasutijumus", "Apkalpot pirmo klientu", "Edienkarte", "Instrukcijas", "Aizvert programmu"};
+		String[] darbibas = {"Jauns klients", "Apskatit klientu pasutijumus", "Apkalpot pirmo klientu", "Edienkarte", "Jauna diena", "Naudas maks", "Pirkt produktus", "Aizvert programmu"};
 		String[] picuVeidi = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē"};
 		String[] klientaIz = {"Pasutijumi", "Klienti"};
 		String[] picuVeidi2 = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē", "Atpakaļ"};
 		String[] lidznemsanas = {"Uz vietas", "Piegade uz majam"};
 		String[] izmeriP = {"30 cm diametra", "50 cm diametra", "80 cm diametra"};
 		String talrunis = null;
-		int kadsKlients;
+		int kadsKlients, dienas = 1;
+		double naudasMaks=0;
 		cilveks klients = null;
 		pica jaunaPica = null;
 		boolean peperoni = false, siers = false, tomati = false, gurki = false, lidznemsana = false;
@@ -26,9 +27,12 @@ public class picerija {
 		
 		ArrayList<cilveks> cilvekuMasivs = new ArrayList<cilveks>();
 		ArrayList<pica> picuMasivs = new ArrayList<pica>();
+		ArrayList<pica> picuMasivs2 = new ArrayList<pica>();
 		
 		ImageIcon bilde = new ImageIcon("loggo.png");
 		JOptionPane.showMessageDialog(null, "Spied 'ok' \n lai sāktu", "Noras picērija", JOptionPane.INFORMATION_MESSAGE, bilde);
+		
+		JOptionPane.showMessageDialog(null, dienas+". diena strādājot Noras picērijā");
 		Random rand = new Random();
 		
 		do {
@@ -38,7 +42,7 @@ public class picerija {
 			switch(izvele) {
 			case "Jauns klients":
 				if(cilvekuMasivs.size() <= 5) {
-				klients = new cilveks(vards, uzvards, talrunis, majasAdrese, veids);
+				klients = new cilveks(vards, uzvards, talrunis, majasAdrese);
 				jaunaPica = new pica(veids, peperoni, siers, tomati, gurki, izmers, lidznemsana);
 				
 				kadsKlients = rand.nextInt(2)+1;
@@ -217,9 +221,68 @@ public class picerija {
 			break;
 			
 			case "Apkalpot pirmo klientu":
+				JOptionPane.showMessageDialog(null, "Megini atcereties klienta pasutijumu un uztaisit tadu pasu picu!");
 					JOptionPane.showMessageDialog(null, ((pica)picuMasivs.get(0)).izvadit());
 					
+					izvele2 = (String) JOptionPane.showInputDialog(null, "Izvelies kādu picu vēlas klients", "Izvele", JOptionPane.QUESTION_MESSAGE,
+							null, picuVeidi, picuVeidi[0]);
 					
+					switch(izvele2) {
+					case "Olīvu pica":
+						jaunaPica.setVeids("Olīvu pica");
+					break;
+					case "Siera pica":
+						jaunaPica.setVeids("Sieru pica");
+					break;
+					case "Studentu pica":
+						jaunaPica.setVeids("Studentu pica");
+					break;
+					case "Peperoni pica":
+						jaunaPica.setVeids("Peperoni pica");
+					break;
+					case "Pica itāļu gaumē":
+						jaunaPica.setVeids("Pica itāļu gaumē");
+					break;
+					}
+					
+					jaunaPica.setPeperoni(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra peperoni? (true/false)")));
+					jaunaPica.setSiers(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra siers? (true/false)")));
+					jaunaPica.setTomati(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra tomati? (true/false)")));
+					jaunaPica.setGurki(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra gurki? (true/false)")));
+					izmers = (String) JOptionPane.showInputDialog(null, "Izvelies picas izmeru", "Izvele", JOptionPane.QUESTION_MESSAGE,
+							null, izmeriP, izmeriP[0]);
+					
+					switch(izmers) {
+					case "30 cm diametra":
+						jaunaPica.setIzmers("30 cm diametra");
+					break;
+					case "50 cm diametra":
+						jaunaPica.setIzmers("50 cm diametra");
+					break;
+					case "80 cm diametra":
+						jaunaPica.setIzmers("80 cm diametra");
+					break;
+					
+					}
+					
+					picuMasivs2.add(jaunaPica);
+					JOptionPane.showMessageDialog(null, "Tiek pārbaudīta pica");
+					
+					if(picuMasivs.get(0).getVeids() != picuMasivs2.get(0).getVeids() || picuMasivs.get(0).getPeperoni() != picuMasivs2.get(0).getPeperoni() ||
+							picuMasivs.get(0).getSiers() != picuMasivs2.get(0).getSiers() || picuMasivs.get(0).getTomati() != picuMasivs2.get(0).getTomati() ||
+							picuMasivs.get(0).getGurki() != picuMasivs2.get(0).getGurki() || picuMasivs.get(0).getIzmers() != picuMasivs2.get(0).getIzmers()) {
+						JOptionPane.showMessageDialog(null, "Tev pica izdevas!");
+					} else {
+					    JOptionPane.showMessageDialog(null, "Tev pica neizdevas!");
+					}	
+					
+					
+			break;
+			
+			case "Jauna diena":
+				dienas++;
+				JOptionPane.showMessageDialog(null, dienas+". diena strādājot Noras picērijā!" );
+				naudasMaks = naudasMaks+20.00;
 				
 			break;
 				
@@ -265,6 +328,10 @@ public class picerija {
 				}
 				}while(!izvele4.equals("Atpakaļ"));
 				
+			break;
+			
+			case "Naudas maks":
+				JOptionPane.showMessageDialog(null, "Tavā naudas makā šobrīd atrodas EUR"+naudasMaks);
 			break;
 				
 			}
