@@ -10,20 +10,23 @@ import javax.swing.JOptionPane;
 public class picerija {
 
 	public static void main(String[] args) {
-		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, izvele4, izvele5, veids = null, izmers = null;
+		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, izvele4, izvele5, veids = null, izmers = null, izvele6;
 		String[] darbibas = {"Jauns klients", "Apskatit klientu pasutijumus", "Apkalpot pirmo klientu", "Edienkarte", "Jauna diena", "Naudas maks", "Pirkt produktus", "Aizvert programmu"};
 		String[] picuVeidi = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē"};
 		String[] klientaIz = {"Pasutijumi", "Klienti"};
 		String[] picuVeidi2 = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē", "Atpakaļ"};
 		String[] lidznemsanas = {"Uz vietas", "Piegade uz majam"};
 		String[] izmeriP = {"30 cm diametra", "50 cm diametra", "80 cm diametra"};
+		String[] produktuPirkt = {"1 picai | 5EUR", "3 picam | 13EUR", "6 picam | 25EUR", "10 picam |40EUR"};
 		String talrunis = null;
-		int kadsKlients, dienas = 1, pabeigtasPicas=0;
+		int kadsKlients, dienas = 1, pabeigtasPicas=0, produkti=3;
+		double picasCena=0;
 		double naudasMaks=0;
 		cilveks klients = null;
 		pica jaunaPica = null;
+		pica otraPica = null;
 		boolean peperoni = false, siers = false, tomati = false, gurki = false, lidznemsana = false;
-		String veids1;
+
 		
 		
 		ArrayList<cilveks> cilvekuMasivs = new ArrayList<cilveks>();
@@ -42,9 +45,11 @@ public class picerija {
 			
 			switch(izvele) {
 			case "Jauns klients":
+				if(produkti>1) {
 				if(cilvekuMasivs.size() <= 5) {
 				klients = new cilveks(vards, uzvards, talrunis, majasAdrese);
 				jaunaPica = new pica(veids, peperoni, siers, tomati, gurki, izmers, lidznemsana);
+				otraPica = new pica(veids, peperoni, siers, tomati, gurki, izmers, lidznemsana);
 				
 				kadsKlients = rand.nextInt(2)+1;
 				if(kadsKlients==1) {
@@ -59,12 +64,15 @@ public class picerija {
 					break;
 					case "Siera pica":
 						jaunaPica.setVeids("Sieru pica");
+						picasCena = picasCena - 1.00;
 					break;
 					case "Studentu pica":
 						jaunaPica.setVeids("Studentu pica");
+						picasCena = picasCena - 1.00;
 					break;
 					case "Peperoni pica":
 						jaunaPica.setVeids("Peperoni pica");
+						picasCena = picasCena - 1.00;
 					break;
 					case "Pica itāļu gaumē":
 						jaunaPica.setVeids("Pica itāļu gaumē");
@@ -76,18 +84,21 @@ public class picerija {
 					jaunaPica.setSiers(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra siers? (true/false)")));
 					jaunaPica.setTomati(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra tomati? (true/false)")));
 					jaunaPica.setGurki(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra gurki? (true/false)")));
-					izmers = (String) JOptionPane.showInputDialog(null, "Izvelies picas izmeru", "Izvele", JOptionPane.QUESTION_MESSAGE,
-							null, izmeriP, izmeriP[0]);
+					jaunaPica.setIzmers((String) JOptionPane.showInputDialog(null, "Izvelies picas izmeru", "Izvele", JOptionPane.QUESTION_MESSAGE,
+							null, izmeriP, izmeriP[0]));
 					
 					switch(izmers) {
 					case "30 cm diametra":
 						jaunaPica.setIzmers("30 cm diametra");
+						picasCena = picasCena+6.99;
 					break;
 					case "50 cm diametra":
 						jaunaPica.setIzmers("50 cm diametra");
+						picasCena = picasCena+9.99;
 					break;
 					case "80 cm diametra":
 						jaunaPica.setIzmers("80 cm diametra");
+						picasCena = picasCena+12.99;
 					break;
 					
 					}
@@ -103,6 +114,7 @@ public class picerija {
 						JOptionPane.showMessageDialog(null, "Klients saglabāts!");
 						cilvekuMasivs.add(klients);
 						picuMasivs.add(jaunaPica);
+						JOptionPane.showMessageDialog(null, "Pica maksā EUR"+picasCena);
 						jaunaPica.setLidznemsana(false);
 					break;
 					case "Piegade uz majam":
@@ -121,6 +133,7 @@ public class picerija {
 						JOptionPane.showMessageDialog(null, "Klienta info pierakstīts! Pica drīz būs gatava!");
 						cilvekuMasivs.add(klients);
 						picuMasivs.add(jaunaPica);
+						JOptionPane.showMessageDialog(null, "Pica maksā EUR"+picasCena);
 						jaunaPica.setLidznemsana(true);
 					break;
 					}
@@ -139,12 +152,15 @@ public class picerija {
 				break;
 				case "Siera pica":
 					jaunaPica.setVeids("Sieru pica");
+					picasCena = picasCena - 1.00;
 				break;
 				case "Studentu pica":
 					jaunaPica.setVeids("Studentu pica");
+					picasCena = picasCena - 1.00;
 				break;
 				case "Peperoni pica":
 					jaunaPica.setVeids("Peperoni pica");
+					picasCena = picasCena - 1.00;
 				break;
 				case "Pica itāļu gaumē":
 					jaunaPica.setVeids("Pica itāļu gaumē");
@@ -161,12 +177,15 @@ public class picerija {
 				switch(izmers) {
 				case "30 cm diametra":
 					jaunaPica.setIzmers("30 cm diametra");
+					picasCena = picasCena+6.99;
 				break;
 				case "50 cm diametra":
 					jaunaPica.setIzmers("50 cm diametra");
+					picasCena = picasCena+9.99;
 				break;
 				case "80 cm diametra":
 					jaunaPica.setIzmers("80 cm diametra");
+					picasCena = picasCena+12.99;
 				break;
 				
 				}
@@ -176,13 +195,16 @@ public class picerija {
 				
 				klients.setVards(JOptionPane.showInputDialog("Ievadi klienta vardu"));
 				klients.setUzvards(JOptionPane.showInputDialog("Ievadi klienta uzvardu"));
+				klients.setTalrunis(" - ");
+				klients.setMajasAdrese(" - ");
 				JOptionPane.showMessageDialog(null, "Klients saglabāts!");
 				cilvekuMasivs.add(klients);
-				
-				JOptionPane.showMessageDialog(null, "Pica drīz būs gatava!");
+				JOptionPane.showMessageDialog(null, "Pica maksā EUR"+picasCena);
 				}
 				}else
 					JOptionPane.showMessageDialog(null, "Tu nevari pieņemt vairāk par 5 cilvēkiem vienlaicīgi");
+			}else 
+				JOptionPane.showMessageDialog(null, "Tev nepietiek produkti lai uztaisītu picas");
 				
 				
 			break;
@@ -222,6 +244,7 @@ public class picerija {
 			break;
 			
 			case "Apkalpot pirmo klientu":
+				if(cilvekuMasivs.size()>0) {
 				JOptionPane.showMessageDialog(null, "Megini atcereties klienta pasutijumu un uztaisit tadu pasu picu!");
 					JOptionPane.showMessageDialog(null, ((pica)picuMasivs.get(0)).izvadit());
 					
@@ -230,28 +253,28 @@ public class picerija {
 					
 					switch(izvele2) {
 					case "Olīvu pica":
-						jaunaPica.setVeids("Olīvu pica");
+						otraPica.setVeids("Olīvu pica");
 					break;
 					case "Siera pica":
-						jaunaPica.setVeids("Sieru pica");
+						otraPica.setVeids("Sieru pica");
 					break;
 					case "Studentu pica":
-						jaunaPica.setVeids("Studentu pica");
+						otraPica.setVeids("Studentu pica");
 					break;
 					case "Peperoni pica":
-						jaunaPica.setVeids("Peperoni pica");
+						otraPica.setVeids("Peperoni pica");
 					break;
 					case "Pica itāļu gaumē":
-						jaunaPica.setVeids("Pica itāļu gaumē");
+						otraPica.setVeids("Pica itāļu gaumē");
 					break;
 					}
 					
-					jaunaPica.setPeperoni(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra peperoni? (true/false)")));
-					jaunaPica.setSiers(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra siers? (true/false)")));
-					jaunaPica.setTomati(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra tomati? (true/false)")));
-					jaunaPica.setGurki(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra gurki? (true/false)")));
-					izmers = (String) JOptionPane.showInputDialog(null, "Izvelies picas izmeru", "Izvele", JOptionPane.QUESTION_MESSAGE,
-							null, izmeriP, izmeriP[0]);
+					otraPica.setPeperoni(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra peperoni? (true/false)")));
+					otraPica.setSiers(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra siers? (true/false)")));
+					otraPica.setTomati(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra tomati? (true/false)")));
+					otraPica.setGurki(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra gurki? (true/false)")));
+					otraPica.setIzmers((String) JOptionPane.showInputDialog(null, "Izvelies picas izmeru", "Izvele", JOptionPane.QUESTION_MESSAGE,
+							null, izmeriP, izmeriP[0]));
 					
 					switch(izmers) {
 					case "30 cm diametra":
@@ -271,33 +294,99 @@ public class picerija {
 					
 					switch(izvele3) {
 					case "Uz vietas":
-						picuMasivs2.add(jaunaPica);
-						jaunaPica.setLidznemsana(false);
+						otraPica.setLidznemsana(false);
+						picuMasivs2.add(otraPica);
 					break;
 					case "Piegade uz majam":
-						picuMasivs2.add(jaunaPica);
-						jaunaPica.setLidznemsana(true);
+						otraPica.setLidznemsana(true);
+						picuMasivs2.add(otraPica);
 					break;
 					}
 					
 					JOptionPane.showMessageDialog(null, "Tiek pārbaudīta pica");
-					JOptionPane.showMessageDialog(null, picuMasivs.get(0).getVeids());
-					JOptionPane.showMessageDialog(null, picuMasivs2.get(0).getVeids());
 					
-					if(picuMasivs.get(0).getVeids() == picuMasivs2.get(0).getVeids()) {
-						JOptionPane.showMessageDialog(null, "Tev pica izdevas!");
+					if(picuMasivs.get(0).getVeids() == picuMasivs2.get(0).getVeids() && picuMasivs.get(0).getPeperoni() == picuMasivs2.get(0).getPeperoni() &&
+							picuMasivs.get(0).getSiers() == picuMasivs2.get(0).getSiers() && picuMasivs.get(0).getTomati() == picuMasivs2.get(0).getTomati() &&
+							picuMasivs.get(0).getGurki() == picuMasivs2.get(0).getGurki() && picuMasivs.get(0).getIzmers() == picuMasivs2.get(0).getIzmers() &&
+							picuMasivs.get(0).getLidznemsana() == picuMasivs2.get(0).getLidznemsana()) {
+						JOptionPane.showMessageDialog(null, "Tev izdevas pagatavot tadu pasu picu!");
+						int tips;
+						tips = rand.nextInt(3)+1;
+						JOptionPane.showMessageDialog(null, "Klients tev iedeva dzeramnaudu par labu darbu!");
+						JOptionPane.showMessageDialog(null, "EUR"+picasCena+" + EUR"+tips+" pievienots tavam naudas makam!");
+						picasCena=picasCena+tips;
+						naudasMaks = naudasMaks+picasCena;
 					} else {
-					    JOptionPane.showMessageDialog(null, "Tev pica neizdevas!");
-					}	
+					    JOptionPane.showMessageDialog(null, "Tev neizdevas pagatavot tadu pasu picu!/nKlients maksas mazak");
+					    int mazak;
+					    mazak = rand.nextInt(3)+1;
+					    JOptionPane.showMessageDialog(null, "EUR"+picasCena+" - EUR"+mazak+" pievienots tavam naudas makam!");
+					    naudasMaks=picasCena-mazak;
+					}
 					
-					
+					pabeigtasPicas++;
+					produkti = produkti-1;
+					picuMasivs.remove(0);
+					picuMasivs2.remove(0);
+					cilvekuMasivs.remove(0);
+					picasCena=0;
+				} else
+					JOptionPane.showMessageDialog(null, "Tev nav pienemti klienti");
 					
 			break;
 			
 			case "Jauna diena":
+				if(pabeigtasPicas>=3) {
 				dienas++;
 				JOptionPane.showMessageDialog(null, dienas+". diena strādājot Noras picērijā!" );
-				naudasMaks = naudasMaks+20.00;
+				JOptionPane.showMessageDialog(null, "EUR10.00 pievienots tavam naudas makam" );
+				naudasMaks = naudasMaks+10.00;
+				} else
+					JOptionPane.showMessageDialog(null, "Tu neesi uztaisījis vismaz 3 picas lai sāktu jaunu dienu!" );
+					
+				
+				
+			break;
+			
+			case "Pirkt produktus":
+				JOptionPane.showMessageDialog(null, "Tev sobrid pietiek produkti lai uztaisitu "+produkti+" picas");
+				izvele6 = (String) JOptionPane.showInputDialog(null, "Izvelies cik picam pirkt produktus", "Izvele", JOptionPane.QUESTION_MESSAGE,
+						null, produktuPirkt, produktuPirkt[0]);
+				
+				switch(izvele6) {
+				case "1 picai | 5EUR":
+					if(naudasMaks>5) {
+					produkti = produkti+1;
+					JOptionPane.showMessageDialog(null, "Nopirkti produkti vēl 1 picai!");
+					}else 
+						JOptionPane.showMessageDialog(null, "Tev nepietiek naudas");
+				break;
+				case "3 picam | 13EUR":
+					if(naudasMaks>13) {
+						produkti = produkti+3;
+						JOptionPane.showMessageDialog(null, "Nopirkti produkti vēl 3 picam!");
+						}else 
+							JOptionPane.showMessageDialog(null, "Tev nepietiek naudas");
+					
+				break;
+				
+				case "6 picam | 25EUR":
+					if(naudasMaks>25) {
+						produkti = produkti+6;
+						JOptionPane.showMessageDialog(null, "Nopirkti produkti vēl 6 picam!");
+						}else 
+							JOptionPane.showMessageDialog(null, "Tev nepietiek naudas");		
+				break;
+				case "10 picam |40EUR":
+					if(naudasMaks>40) {
+						produkti = produkti+10;
+						JOptionPane.showMessageDialog(null, "Nopirkti produkti vēl 10 picam!");
+						}else 
+							JOptionPane.showMessageDialog(null, "Tev nepietiek naudas");
+						
+				break;
+				}
+				
 				
 			break;
 				
@@ -325,7 +414,7 @@ public class picerija {
 				case "Studentu pica":
 					ImageIcon bilde4 = new ImageIcon("studentu pica.png");
 					JOptionPane.showMessageDialog(null, "Sastāvdaļas:\nSiers\nTomātu mērce\nPaprika\nSīpoli\nOlīvas"
-							+ "\n______\nCena:\n30cm - 4.99\n50cm - 7.99\n80cm - 11.99 ", "Siera pica", JOptionPane.INFORMATION_MESSAGE, bilde4);
+							+ "\n______\nCena:\n30cm - 5.99\n50cm - 8.99\n80cm - 11.99 ", "Siera pica", JOptionPane.INFORMATION_MESSAGE, bilde4);
 				break;
 				case "Peperoni pica":
 					ImageIcon bilde5 = new ImageIcon("peperoni pica.png");
@@ -335,7 +424,7 @@ public class picerija {
 				case "Pica itāļu gaumē":
 					ImageIcon bilde6 = new ImageIcon("italu pica.png");
 					JOptionPane.showMessageDialog(null, "Sastāvdaļas:\nSiers\nTomātu mērce\nTomāti\nĶiploki\nOregano\nLapas"
-							+ "\n______\nCena:\n30cm - 5.99\n50cm - 8.99\n80cm - 11.99 ", "Peperoni pica", JOptionPane.INFORMATION_MESSAGE, bilde6);
+							+ "\n______\nCena:\n30cm - 6.99\n50cm - 9.99\n80cm - 12.99 ", "Peperoni pica", JOptionPane.INFORMATION_MESSAGE, bilde6);
 				break;
 				case "Atpakaļ":
 					
