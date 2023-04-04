@@ -11,7 +11,7 @@ public class picerija {
 
 	public static void main(String[] args) {
 		String vards = null, uzvards = null, majasAdrese = null, izvele, izvele2, izvele3, izvele4, izvele5, veids = null, izmers = null, izvele6;
-		String[] darbibas = {"Jauns klients", "Apskatit klientu pasutijumus", "Apkalpot pirmo klientu", "Edienkarte", "Jauna diena", "Naudas maks", "Pirkt produktus", "Aizvert programmu"};
+		String[] darbibas = {"Edienkarte", "Jauns klients", "Apskatit klientu pasutijumus", "Apkalpot pirmo klientu", "Pirkt produktus",  "Jauna diena",  "Naudas maks", "Aizvert programmu"};
 		String[] picuVeidi = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē"};
 		String[] klientaIz = {"Pasutijumi", "Klienti"};
 		String[] picuVeidi2 = {"Olīvu pica", "Siera pica", "Studentu pica", "Peperoni pica", "Pica itāļu gaumē", "Atpakaļ"};
@@ -20,15 +20,11 @@ public class picerija {
 		String[] produktuPirkt = {"1 picai | 5EUR", "3 picam | 13EUR", "6 picam | 25EUR", "10 picam |40EUR"};
 		String talrunis = null;
 		int kadsKlients, dienas = 1, pabeigtasPicas=0, produkti=3;
-		double picasCena=0;
-		double naudasMaks=0;
+		double picasCena=0, naudasMaks=0;
 		cilveks klients = null;
 		pica jaunaPica = null;
 		pica otraPica = null;
 		boolean peperoni = false, siers = false, tomati = false, gurki = false, lidznemsana = false;
-
-		
-		
 		ArrayList<cilveks> cilvekuMasivs = new ArrayList<cilveks>();
 		ArrayList<pica> picuMasivs = new ArrayList<pica>();
 		ArrayList<pica> picuMasivs2 = new ArrayList<pica>();
@@ -79,8 +75,9 @@ public class picerija {
 					break;
 					}
 					
-					
+					do {
 					jaunaPica.setPeperoni(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra peperoni? (true/false)")));
+					}while(peperoni==true || peperoni==false);
 					jaunaPica.setSiers(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra siers? (true/false)")));
 					jaunaPica.setTomati(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra tomati? (true/false)")));
 					jaunaPica.setGurki(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra gurki? (true/false)")));
@@ -317,7 +314,7 @@ public class picerija {
 						picasCena=picasCena+tips;
 						naudasMaks = naudasMaks+picasCena;
 					} else {
-					    JOptionPane.showMessageDialog(null, "Tev neizdevas pagatavot tadu pasu picu!/nKlients maksas mazak");
+					    JOptionPane.showMessageDialog(null, "Tev neizdevas pagatavot tadu pasu picu!\nKlients maksas mazak");
 					    int mazak;
 					    mazak = rand.nextInt(3)+1;
 					    JOptionPane.showMessageDialog(null, "EUR"+picasCena+" - EUR"+mazak+" pievienots tavam naudas makam!");
