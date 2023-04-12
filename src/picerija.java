@@ -82,11 +82,9 @@ public class picerija {
 					jaunaPica.setSiers(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra siers? (true/false)")));
 					jaunaPica.setTomati(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra tomati? (true/false)")));
 					jaunaPica.setGurki(Boolean.parseBoolean(JOptionPane.showInputDialog("Extra gurki? (true/false)")));
-					jaunaPica.setIzmers((String) JOptionPane.showInputDialog(null, "Izvelies picas izmeru", "Izvele", JOptionPane.QUESTION_MESSAGE,
-							null, izmeriP, izmeriP[0]));
+					izmers = (String) JOptionPane.showInputDialog(null, "Izvelies picas izmeru", "Izvele", JOptionPane.QUESTION_MESSAGE,
+							null, izmeriP, izmeriP[0]);
 									
-					
-					
 					switch(izmers) {
 					case "30 cm diametra":
 						jaunaPica.setIzmers("30 cm diametra");
@@ -100,6 +98,7 @@ public class picerija {
 						jaunaPica.setIzmers("80 cm diametra");
 						
 					break;
+					
 					
 					}
 					izvele3 = (String) JOptionPane.showInputDialog(null, "Izvelies darbibu", "Izvele", JOptionPane.QUESTION_MESSAGE,
