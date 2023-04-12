@@ -1,10 +1,13 @@
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.regex.Pattern;
-import javax.swing.ImageIcon;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 
 public class picerija {
@@ -35,6 +38,8 @@ public class picerija {
 		
 		JOptionPane.showMessageDialog(null, dienas+". diena strādājot Noras picērijā");
 		Random rand = new Random();
+		
+		
 		
 		do {
 			izvele = (String) JOptionPane.showInputDialog(null, "Izvelies darbibu", "Izvele", JOptionPane.QUESTION_MESSAGE,
@@ -210,11 +215,13 @@ public class picerija {
 			break;
 			
 			case "Apskatit klientu pasutijumus":
+	
 				izvele5 = (String) JOptionPane.showInputDialog(null, "Izvelies kadu info apskatit", "Izvele", JOptionPane.QUESTION_MESSAGE,
 						null, klientaIz, klientaIz[0]);
 				
 				switch(izvele5) {
 				case "Pasutijumi":
+
 					int pasutijums = 1;
 					Iterator<pica> apskatit = picuMasivs.iterator();
 					String rezultats = "Pasūtijumu skaits: "+picuMasivs.size()+"\n_________________\n";
@@ -224,7 +231,12 @@ public class picerija {
 						rezultats += apskatit.next().izvadit()+"\n_________________\n";
 						pasutijums++;
 					}
-					JOptionPane.showMessageDialog(null, rezultats, "Picas", JOptionPane.INFORMATION_MESSAGE);
+					JTextArea textArea = new JTextArea(rezultats);
+					JScrollPane scrollPane = new JScrollPane(textArea);
+					textArea.setLineWrap(true);
+					textArea.setWrapStyleWord(true);
+					scrollPane.setPreferredSize(new Dimension(500, 500));
+					JOptionPane.showMessageDialog(null, scrollPane, "Klienti", JOptionPane.INFORMATION_MESSAGE);
 					
 				break;
 				case "Klienti":
@@ -236,7 +248,12 @@ public class picerija {
 						rezultats2 += apskatit2.next().izvaditC()+"\n_________________\n";
 						pasutijums2++;
 					}
-					JOptionPane.showMessageDialog(null, rezultats2, "Klienti", JOptionPane.INFORMATION_MESSAGE);
+					JTextArea textArea1 = new JTextArea(rezultats2);
+					JScrollPane scrollPane1 = new JScrollPane(textArea1);
+					textArea1.setLineWrap(true);
+					textArea1.setWrapStyleWord(true);
+					scrollPane1.setPreferredSize(new Dimension(500, 500));
+					JOptionPane.showMessageDialog(null, scrollPane1, "Klienti", JOptionPane.INFORMATION_MESSAGE);
 					
 				break;
 				
